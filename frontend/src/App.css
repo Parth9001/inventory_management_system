@@ -141,9 +141,10 @@ body{
 	flex-direction: column;
 	width: 300px;
 	background: #042453;
+	position: fixed;
 }
 .sidebartop{
-	padding-top: 100px;
+	padding-top: 90px;
 	padding-bottom: 300px;
 }
 .sidebarbottom{
@@ -227,4 +228,21 @@ body{
 .profilelogoutbutton{
 	background: none;
 	border: none;
+}
+/* Background */
+.bgpage {
+	background-color: #042453;
+	height: 100vh;
+	width: 100%; 
+	display: flex;
+	justify-content: center;
+	color: #FFF;
+	font-family: Garamond;
+	font-style: normal;
+	position: fixed;
+}
+.logo{
+	position: fixed;
+	top: 0;
+	padding-top: 2vh;
 }
