@@ -1,17 +1,14 @@
 import './App.css';
 import Card from './Components/Card';
 import Login from './Components/Login';
-import Pagebg from './pagebg';
+import Sidebar from './Components/sidebar';
 
 function App() {
   return (
     <>
       {/* <Login/> */}
       {/* <Card/> */}
-        {/* <Pagebg/> */}
-        {/* <Pagebg/> */}
-        {/* <Addpage/> */}
-        <Pagebg/>
+        <Sidebar />
         </>
   );
 }
