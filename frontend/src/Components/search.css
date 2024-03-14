@@ -1,0 +1,76 @@
+.searchbar{
+    margin: 100px; /*delete later*/
+
+    width: 970px;
+    height: 60px;
+    border-radius: 20px;
+    border: 3px solid #4C7ED5;
+    background: #FFF;
+    box-shadow: 4px 4px 15px 10px rgba(76, 126, 213, 0.60);
+}
+
+#searchIcon{
+    margin-left: -2%;
+    margin-top: -1%;
+}
+
+#searchTxt{
+    height: 99%;
+    width: 89%;
+    margin-left: 1%;
+    color: #497BD0;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.sort{
+    border-left: 3px solid #4C7ED5;
+}
+
+#sortIcon, #filterIcon{
+    margin-top: 4%;
+    margin-left: -3%;
+}
+
+#sortDrop{
+    height: 50%;
+    width: 86%;
+    margin-top: 1%;
+}
+
+select{
+    color: #497BD0;
+}
+
+.filter{
+    border-left: 3px solid #4C7ED5;
+    display: flex;
+}
+
+.dropdown-toggle{
+    color: #497BD0;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown-menu{
+    border: 2px solid #497BD0;
+    font-size: 130%;
+}
+.dropdown-item{
+    color: #497BD0;
+}
+
+#min, #max{
+    width: 60px;
+}
+
+input[type="checkbox"]{
+    margin-right: 3%;
+}

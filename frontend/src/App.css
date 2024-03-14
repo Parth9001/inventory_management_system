@@ -2,6 +2,10 @@ body{
 	font-family: Garamond;
 }
 
+::placeholder{
+    color: #497BD0;
+}
+
 /* LOGIN PAGE */
 
 .login {
