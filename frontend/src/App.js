@@ -11,7 +11,7 @@ function App() {
       {/* <Card/> */}
       {/* <Sidebar /> */}
       {/* <EditPage /> */}
-      <Pagebg />
+      {/* <Pagebg /> */}
     </>
   );
 }
