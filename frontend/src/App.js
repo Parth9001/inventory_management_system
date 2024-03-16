@@ -4,6 +4,7 @@ import Login from './Components/Login';
 import Sidebar from './Components/sidebar';
 import EditPage from './editPageComp/editPage';
 import Pagebg from './Components/pagebg';
+import IssuedProductCard from './Components/IssuedProductCard.JS';
 function App() {
   return (
     <>
@@ -11,7 +12,8 @@ function App() {
       {/* <Card/> */}
       {/* <Sidebar /> */}
       {/* <EditPage /> */}
-      {/* <Pagebg /> */}
+      
+      
     </>
   );
 }
