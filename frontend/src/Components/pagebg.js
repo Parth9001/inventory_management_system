@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from './Components/sidebar'
+import Sidebar from './sidebar'
 
 export default function Pagebg(){
     return(
