@@ -9,7 +9,7 @@ function App() {
     <>
       {/* <Login/> */}
       {/* <Card/> */}
-      {/* <Pagebg/> */}
+      <Pagebg/>
       <Home/>
     </>
   );

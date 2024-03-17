@@ -244,6 +244,7 @@ body{
 	font-family: Garamond;
 	font-style: normal;
 	position: fixed;
+	z-index: -2;
 }
 .logo{
 	position: fixed;

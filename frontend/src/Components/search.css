@@ -1,3 +1,7 @@
+input[type="text"]{
+    border: none;
+}
+
 .searchbar{
     width: 970px;
     height: 60px;
@@ -14,7 +18,7 @@
 
 #searchTxt{
     height: 99%;
-    width: 89%;
+    width: 93%;
     margin-left: 1%;
     color: #497BD0;
     font-size: 24px;
