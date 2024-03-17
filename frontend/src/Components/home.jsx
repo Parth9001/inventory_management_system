@@ -35,11 +35,11 @@ export default function Home() {
                     top: 0,
                     position: "absolute",
                     boxShadow: "20px 20px 50px 30px #001521 inset",
-                    borderTopLeftRadius: 250,
-                    border: "1px #024162 solid",
-                    zIndex: -1
+                    borderTopLeftRadius: 200,
+                    zIndex: -1,
+                    backgroundColor: "white"
                 }}
-                src={homeBG}
+                // src={homeBG}
             />
 
             <div className="search" style={{paddingTop: '20%', paddingLeft: '8%', zIndex: 1}}>
