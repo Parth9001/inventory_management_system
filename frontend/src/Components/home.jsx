@@ -1,11 +1,9 @@
 import React from "react";
 import Search from "./search";
 import Card from "./Card";
-import homeBG from "./assets/homeBG.png"
 
 export default function Home() {
 	return (
-    <div style={{marginLeft:'20%', paddingTop: '5%'}}>
         <div style={{ width: "100%", position: "relative"}}>
             <div
                 style={{
@@ -39,7 +37,6 @@ export default function Home() {
                     zIndex: -1,
                     backgroundColor: "white"
                 }}
-                // src={homeBG}
             />
 
             <div className="search" style={{paddingTop: '20%', paddingLeft: '8%', zIndex: 1}}>
@@ -55,6 +52,5 @@ export default function Home() {
                 <div className="col-4" style={{marginTop: '5%'}}><Card/></div>
             </div>
         </div>
-    </div>
 	);
 }
