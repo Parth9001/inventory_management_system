@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
-function Navbarcomponent({ svgcode, text }){
+export default function Navbarcomponent({ svgcode, text }){
     const getLink = (text) => {
         switch (text) {
           case 'Home':
@@ -16,15 +16,14 @@ function Navbarcomponent({ svgcode, text }){
             return '/';
         }
       };
-      
+
 return (
     <div className="navbarcomponent">
             <div className="navbarcomponentimg" dangerouslySetInnerHTML={{ __html: svgcode }} />
             <div className="navbarcomponenttxt">
                 <Link to={getLink(text)}><button className="navbarcomponentbutton">{text}</button></Link>
             </div>
-        
+
     </div>
     );
 }
-export default Navbarcomponent;
