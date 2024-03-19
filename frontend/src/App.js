@@ -12,7 +12,7 @@ import AuditPageBar from './Components/AuditPage';
 function App() {
   return (
     <>
-      {/* <Login/> */}
+      <Login/>
       {/* <Card/> */}
       {/* <Pagebg/> */}
       {/* <div style={{marginLeft:'20%', paddingTop: '5%'}}> */}
