@@ -132,3 +132,8 @@ REST_FRAMEWORK = {
 
     ]
 }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default backend for username/password authentication
+    'products.backends.CustomBackend',  # Custom backend for alternative authentication mechanism
+]
