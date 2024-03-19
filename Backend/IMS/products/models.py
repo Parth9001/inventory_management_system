@@ -8,24 +8,24 @@ def generate_id():
     unique_id = uuid.uuid4()
     return str(unique_id.hex)[:8]
 
-class User(models.Model):
-    user_name = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    Designation = models.CharField(max_length=255)
-    access_level = models.CharField(max_length=255)
-    user_id = models.CharField(max_length=255, unique=True)
-    def __str__(self) -> str:
-        return self.user_name
 
 class Products(models.Model):
     name = models.CharField(max_length=255)
     quantity = models.IntegerField()
-    description = models.TextField()
-    product_id = models.CharField(max_length=255,default=generate_id, editable=False,unique=True)
-    location = models.TextField()
-    favourites = models.BooleanField()
-    access_level = models.CharField(max_length=255)
-    Issued_by = User.objects()
+    description = models.TextField(default='')
+    product_id = models.CharField(max_length=255,default=generate_id, editable=False)
+    location = models.TextField(default='')
+    favourites = models.BooleanField(default=0)
+    access_level = models.CharField(max_length=255,default='')
     def __str__(self) -> str:
         return self.name
 
+class User(models.Model):
+    user_name = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+    Designation = models.CharField(max_length=255,default='')
+    access_level = models.CharField(max_length=255, default="")
+    user_id = models.CharField(max_length=255,unique=True)
+    products_issued=models.ManyToManyField(Products)
+    def __str__(self) -> str:
+        return self.user_name
