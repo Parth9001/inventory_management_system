@@ -1,5 +1,6 @@
 import React from "react";
-import IssuedProductCard from "./IssuedProductCard";
+// import IssuedProductCard from "./IssuedProductCard";
+// import ProductCard from "./productCard";
 import Search from "./search";
 
 export default function Issued() {
@@ -56,22 +57,22 @@ export default function Issued() {
 				}}
 			>
 				<div className='row'>
-					<IssuedProductCard />
+					{/* <IssuedProductCard /> */}
 				</div>
 				<div className='row'>
-					<IssuedProductCard />
+					{/* <IssuedProductCard /> */}
 				</div>
 				<div className='row'>
-					<IssuedProductCard />
+					{/* <IssuedProductCard /> */}
 				</div>
 				<div className='row'>
-					<IssuedProductCard />
+					{/* <IssuedProductCard /> */}
 				</div>
 				<div className='row'>
-					<IssuedProductCard />
+					{/* <IssuedProductCard /> */}
 				</div>
 				<div className='row'>
-					<IssuedProductCard />
+					{/* <IssuedProductCard /> */}
 				</div>
 			</div>
 		</div>
