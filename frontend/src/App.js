@@ -1,5 +1,6 @@
 import './App.css';
 import Card from './Components/Card';
+import Issued from './Components/issued';
 import Login from './Components/Login';
 import Home from './Components/home';
 import Pagebg from './Components/pagebg'
@@ -16,7 +17,8 @@ function App() {
         {/* React router dom --- */}
           {/* <Home/> */}
           {/* <MyComponent/> */}
-          <EditPage/>
+          {/* <EditPage/> */}
+          <Issued/>
       </div>
     </>
   );
