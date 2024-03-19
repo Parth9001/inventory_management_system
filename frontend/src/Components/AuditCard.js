@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DownArrow from './DownArrow.png'
+import DownArrow from './assets/DownArrow.png'
 
 export default function AuditCard() {
   const [isOpen, setIsOpen] = useState(false);
