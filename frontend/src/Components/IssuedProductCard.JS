@@ -14,6 +14,7 @@ export default function IssuedProductCard() {
 					boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
 					borderRadius: 20,
 					border: "3px #4C7ED5 solid",
+					zIndex: 1
 				}}
 			>
 				<div
@@ -25,6 +26,7 @@ export default function IssuedProductCard() {
 						position: "absolute",
 						background: "#042453",
 						borderRadius: 10,
+						zIndex: 1
 					}}
 				/>
 				<div
@@ -38,6 +40,7 @@ export default function IssuedProductCard() {
 						fontFamily: "Garamond",
 						fontWeight: "700",
 						wordWrap: "break-word",
+						zIndex: 1
 					}}
 				>
 					Product Name
@@ -53,6 +56,7 @@ export default function IssuedProductCard() {
 						fontFamily: "Garamond",
 						fontWeight: "400",
 						wordWrap: "break-word",
+						zIndex: 1
 					}}
 				>
 					Product Type
@@ -70,6 +74,7 @@ export default function IssuedProductCard() {
 						fontFamily: "Garamond",
 						fontWeight: "400",
 						wordWrap: "break-word",
+						zIndex: 1
 					}}
 				>
 					DD/MM/YYYY
@@ -89,6 +94,7 @@ export default function IssuedProductCard() {
 						fontFamily: "Garamond",
 						fontWeight: "400",
 						wordWrap: "break-word",
+						zIndex: 1
 					}}
 				>
 					00

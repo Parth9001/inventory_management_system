@@ -26,7 +26,7 @@ export default function AuditCard() {
   };
 
   return (
-    <div>
+    <div style={{marginBottom: '1%'}}>
       <div style={{ width: 970, height: isOpen ? 120 : 70, position: 'relative', background: 'white', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 20 }}>
         <div style={{ width: '100%', height: '100%', border: '3px solid #042453', borderRadius: 20 }}>
           <div style={{ left: 30, top: 8, position: 'absolute', textAlign: 'center', color: '#042453', fontSize: 30, fontFamily: 'Garamond', fontWeight: '700', wordWrap: 'break-word' }}>Product Name</div>
@@ -38,12 +38,12 @@ export default function AuditCard() {
           </div>
           {isOpen && (
             <div style={{ width: '99.5%', position: 'absolute', top: 70, background: 'white', borderRadius: '0 0 20px 20px' }}>
-              <div style={{ width: '100%', padding: '10px', boxSizing: 'border-box' }}>
+              <div style={{ width: '100%', paddingTop: '10px', paddingLeft: '2.8%', boxSizing: 'border-box' }}>
                 <div style={{ width: '100%', height: 15, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                   <div style={{ color: '#042453', fontSize: 20, fontFamily: 'Garamond', fontWeight: '700', flex: '1' }}>User Name</div>
                   <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1' }}>User ID</div>
-                  <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1' }}>DD/MM/YYYY<br />00:00</div>
-                  <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1' }}>00</div>
+                  <div style={{ marginLeft:'5%', color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1', textAlign: "center" }}>DD/MM/YYYY<br />00:00</div>
+                  <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1', textAlign: 'center' }}>00</div>
                 </div>
                 {/* Map through rowData to render multiple rows */}
                 {rowData.map((row, index) => (
