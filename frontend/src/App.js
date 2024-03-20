@@ -47,13 +47,11 @@ function App() {
       {/* <Pagebg/> */}
       {/* <div style={{marginLeft:'20%', paddingTop: '5%'}}> */}
         {/* React router dom --- */}
-          {/* <Home/> */}
+          <Home/>
           {/* <MyComponent/> */}
           {/* <EditPage/> */}
           {/* <Issued/> */}
-          {/* <AuditCard /> */}
-        {/* <AuditPageBar /> */}
-        {/* <Issued /> */}
+          {/* <Audit/> */}
       {/* </div> */}
     </>
   );
