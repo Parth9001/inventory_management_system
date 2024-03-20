@@ -25,7 +25,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Login() {
-  const [username, setEmail] = useState('');
+  const [user_name, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 
@@ -40,7 +40,7 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ user_name, password }),
       });
 
       const statusCode = response.status;
@@ -71,7 +71,7 @@ export default function Login() {
             name="email"
             id="emailInput"
             placeholder='Enter Email'
-            value={username}
+            value={user_name}
             onChange={(e) => setEmail(e.target.value)}
             required
           /><br />

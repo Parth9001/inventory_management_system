@@ -11,17 +11,17 @@ import Audit from './Components/audit'
 function App() {
   return (
     <>
-      <Login/>
+      {/* <Login/> */}
       {/* <Card/> */}
-      {/* <Pagebg/> */}
-      {/* <div style={{marginLeft:'20%', paddingTop: '5%'}}> */}
+      <Pagebg/>
+      <div style={{marginLeft:'20%', paddingTop: '5%'}}>
         {/* React router dom --- */}
-          {/* <Home/> */}
+          <Home/>
           {/* <MyComponent/> */}
           {/* <EditPage/> */}
           {/* <Issued/> */}
           {/* <Audit/> */}
-      {/* </div> */}
+      </div>
     </>
   );
 }
