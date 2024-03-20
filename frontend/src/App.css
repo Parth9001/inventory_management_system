@@ -99,6 +99,22 @@ body{
 	box-shadow: 4px 4px 15px 10px rgba(8, 65, 110, 0.60);
 }
 
+.card:hover .card-img-top{
+	z-index: 4;
+	width: 294px;
+	height: 164px;
+	border-radius: 14px 14px 0px 0px;
+	background: #042453;
+}
+
+.hoverBtn{
+	display: none;
+}
+.card:hover .hoverBtn{
+	display: block;
+}
+
+
 .card-img-top{
 	width: 294px;
 	height: 214px;

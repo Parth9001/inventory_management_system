@@ -1,7 +1,7 @@
 import React from "react";
-// import IssuedProductCard from "./IssuedProductCard";
-// import ProductCard from "./productCard";
+
 import Search from "./search";
+import IssuedCard from "./IssuedCard";
 
 export default function Issued() {
 	return (
@@ -57,22 +57,22 @@ export default function Issued() {
 				}}
 			>
 				<div className='row'>
-					{/* <IssuedProductCard /> */}
+					<IssuedCard />
 				</div>
 				<div className='row'>
-					{/* <IssuedProductCard /> */}
+					<IssuedCard />
 				</div>
 				<div className='row'>
-					{/* <IssuedProductCard /> */}
+					<IssuedCard />
 				</div>
 				<div className='row'>
-					{/* <IssuedProductCard /> */}
+					<IssuedCard />
 				</div>
 				<div className='row'>
-					{/* <IssuedProductCard /> */}
+					<IssuedCard />
 				</div>
 				<div className='row'>
-					{/* <IssuedProductCard /> */}
+					<IssuedCard />
 				</div>
 			</div>
 		</div>
