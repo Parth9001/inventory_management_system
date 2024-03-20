@@ -75,6 +75,7 @@ class SearchAPIView(ListAPIView):
     serializer_class = PSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
+
 class LoginAPIView(APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
