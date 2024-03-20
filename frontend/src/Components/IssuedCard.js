@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function IssuedProductCard() {
+function IssuedCard() {
 	return (
 		<div style={{ width: "100%", height: "100%", position: "relative", marginTop: "11%", marginLeft: "2%" }}>
 			<div
@@ -103,3 +103,4 @@ export default function IssuedProductCard() {
 		</div>
 	);
 }
+export default IssuedCard;
