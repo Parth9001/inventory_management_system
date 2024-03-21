@@ -23,7 +23,6 @@ class Products(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
-    user_id=models.CharField(max_length=255,unique=True)
     Designation = models.CharField(max_length=255,default='')
     access_level = models.CharField(max_length=255, default="")
     products_issued=models.ManyToManyField(Products, default=list)
