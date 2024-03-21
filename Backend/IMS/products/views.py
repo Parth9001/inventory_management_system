@@ -87,3 +87,42 @@ class LoginAPIView(APIView):
             # Perform login actions here if needed
             return Response(s.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['POST'])
+def issue_product(request):
+    if request.method == 'POST':
+        username = request.data.get('username', None)
+        product_id = request.data.get('product_id', None)
+        
+        if not username or not product_id:
+            return Response({'error': 'Username and product ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user = User.objects.get(username=username)
+            product = Products.objects.get(product_id=product_id)
+            
+            if product.quantity <= 0:
+                return Response({'error': 'Product is out of stock.'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            user.products_issued.add(product)
+            product.save()
+            user.save()
+            
+            return Response({'message': 'Product issued successfully.'}, status=status.HTTP_200_OK)
+        
+        except User.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+        except Products.DoesNotExist:
+            return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def get_user_products(request, username):
+    if request.method == 'GET':
+        try:
+            user = User.objects.get(username=username)
+            products_issued = user.products_issued.all()
+            serializer = PSerializer(products_issued, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
