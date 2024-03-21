@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const TextInputBoxWithStylesDesc = () => {
+const TextInputBoxWithStylesDesc = ({valuedesc,setValuedesc}) => {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState('');
   const [fontSize, setFontSize] = useState(20); // Initial font size
   const maxLength = 300;
 
@@ -13,15 +12,15 @@ const TextInputBoxWithStylesDesc = () => {
   };
 
   const handleBlur = () => {
-    if (!value) {
+    if (!valuedesc) {
       setFocused(false);
     }
   };
 
   const handleChange = (event) => {
-    const inputValue = event.target.value;
-    if (inputValue.length <= maxLength) {
-      setValue(inputValue);
+    const inputValuedesc = event.target.valuedesc;
+    if (inputValuedesc.length <= maxLength) {
+      setValuedesc(inputValuedesc);
     }
   };
 
@@ -39,13 +38,13 @@ const TextInputBoxWithStylesDesc = () => {
 
       
     }
-  }, [value]);
+  }, [valuedesc]);
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <textarea
         ref={inputRef}
-        value={value}
+        valuedesc={valuedesc}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -69,7 +68,7 @@ const TextInputBoxWithStylesDesc = () => {
       />
       {/* Display character count */}
       <div style={{ position: 'absolute', bottom: '10px', right: '10px', color: 'gray', fontSize: '14px' }}>
-        {maxLength - value.length} characters left
+        {maxLength - valuedesc.length} characters left
       </div>
     </div>
   );

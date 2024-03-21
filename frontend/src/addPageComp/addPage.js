@@ -8,6 +8,13 @@ import LinkButton from "./Button/addButton";
 import UploadImage from "./Image/uploadImge";
 import QuantityCounter from "./quantity/addQuan";
 function MyComponent() {
+	const [image, setImage] = useState(null);
+	const [quantity, setQuantity] = useState(0);
+	const [valuename, setValuename] = useState('');
+	const [valuedesc, setValuedesc] = useState('');
+	const [valuecode, setValuecode] = useState('');
+	const [valueid, setValueid] = useState('');
+
 	return (
 		<div style={{ width: "100%", height: "100%", position: "relative" }}>
 			<div
@@ -53,7 +60,7 @@ function MyComponent() {
 				}}
 			>
 				<div style={{ position: "absolute",zIndex: 1 }}>
-					<LinkButton />
+					<LinkButton image={image}/>
 				</div>
 			</div>
 
@@ -69,7 +76,7 @@ function MyComponent() {
 				}}
 			>
 				<div style={{ position: "absolute", left: 0, top: 40, zIndex: 1 }}>
-					<TextInputBoxWithStylesDesc />
+					<TextInputBoxWithStylesDesc valuedesc={valuedesc} setValuedesc={setValuedesc}/>
 				</div>
 				<div
 					style={{
@@ -90,7 +97,7 @@ function MyComponent() {
 
 			{/*count*/}
 			<div style={{zIndex: 1}}>
-				<QuantityCounter />
+				<QuantityCounter quantity={quantity} setQuantity={setQuantity}/>
 			</div>
 
 			{/*product code*/}
@@ -105,7 +112,7 @@ function MyComponent() {
 				}}
 			>
 				<div style={{ position: "absolute", left: 0, top: 20,zIndex: 1 }}>
-					<TextInputBoxWithStylesProdCode />
+					<TextInputBoxWithStylesProdCode valuecode={valuecode} setValuecode={setValuecode}/>
 				</div>
 				<div
 					style={{
@@ -136,7 +143,7 @@ function MyComponent() {
 				}}
 			>
 				<div style={{ position: "absolute", left: 0, top: 20,zIndex: 1 }}>
-					<TextInputBoxWithStylesName></TextInputBoxWithStylesName>
+					<TextInputBoxWithStylesName valuename={valuename} setValuename={setValuename}/>
 				</div>
 				<div
 					style={{
@@ -167,7 +174,7 @@ function MyComponent() {
 				}}
 			>
 				<div style={{ position: "absolute", left: 0, top: 20 }}>
-					<TextInputBoxWithStylesProdId />
+					<TextInputBoxWithStylesProdId valueid={valueid} setValueid={setValueid}/>
 				</div>
 				<div
 					style={{
@@ -188,7 +195,7 @@ function MyComponent() {
 
 			{/*image upload*/}
 			<div style={{ position: "absolute", top: 300, left: 800, zIndex: 1}}>
-				<UploadImage />
+				<UploadImage image={image} setImage={setImage}/>
 			</div>
 		</div>
 	);

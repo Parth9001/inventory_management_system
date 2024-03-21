@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
-const TextInputBoxWithStylesName = () => {
+const TextInputBoxWithStylesName = ({valuename, setValuename}) => {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState('');
-
   // Define a variable for the placeholder text
   var placeholderText = 'Enter name of product';
 
@@ -12,20 +10,20 @@ const TextInputBoxWithStylesName = () => {
   };
 
   const handleBlur = () => {
-    if (!value) {
+    if (!valuename) {
       setFocused(false);
     }
   };
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setValuename(event.target.valuename);
   };
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <input
         type="text"
-        value={value}
+        valuename={valuename}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}

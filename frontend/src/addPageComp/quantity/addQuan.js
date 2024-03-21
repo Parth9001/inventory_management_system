@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-function QuantityCounter() {
-  const [quantity, setQuantity] = useState(0);
-
+function QuantityCounter({quantity, setQuantity}) {
+  
   const handleIncrement = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
