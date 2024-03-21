@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Remove from "./assets/Remove.svg";
 import Edit from "./assets/Edit.svg";
+import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
 	render() {
@@ -21,7 +22,7 @@ export default class Card extends Component {
 						position:'relative',
 					}}
 				>
-					<img src={Edit} alt="" style={{marginTop: '5%', marginLeft: '15%'}}/>
+					<Link to="/edit"><img src={Edit} alt="" style={{marginTop: '5%', marginLeft: '15%'}}/></Link>
 
 					<div
 						style={{

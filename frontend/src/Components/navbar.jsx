@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function Navbarcomponent({ svgcode, text }){
     const getLink = (text) => {
@@ -19,7 +18,6 @@ export default function Navbarcomponent({ svgcode, text }){
       };
 
 return (
-  <Router>
 
     <div className="navbarcomponent">
             <div className="navbarcomponentimg" dangerouslySetInnerHTML={{ __html: svgcode }} />
@@ -28,6 +26,5 @@ return (
             </div>
 
     </div>
-  </Router>
     );
 }

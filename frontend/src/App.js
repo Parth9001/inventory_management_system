@@ -12,7 +12,7 @@ import DescriptionPage from './Components/descriptionPage';
 function App() {
   return (
     <>
-    {/* <Router>
+     <Router>
           <Switch>
             <Route exact path="/" > 
               <Pagebg/>
@@ -38,16 +38,28 @@ function App() {
                 <Audit/>
               </div>
             </Route>
+            <Route path="/product">
+              <Pagebg/>
+              <div style={{marginLeft:'20%', paddingTop: '5%'}}>
+                <DescriptionPage/>
+              </div>
+            </Route>
+            <Route path="/edit">
+              <Pagebg/>
+              <div style={{marginLeft:'20%', paddingTop: '5%'}}>
+                <EditPage/>
+              </div>
+            </Route>
 
           </Switch>
-        </Router> */}
+        </Router> 
       {/* <Login/> */}
       {/* <Card/> */}
       {/* <Pagebg/> */}
       {/* <div style={{marginLeft:'20%', paddingTop: '5%'}}> */}
         {/* React router dom --- */}
           {/* <Home/> */}
-          <MyComponent/>
+          {/* <MyComponent/> */}
           {/* <EditPage/> */}
           {/* <Issued/> */}
           {/* <Audit/> */}
