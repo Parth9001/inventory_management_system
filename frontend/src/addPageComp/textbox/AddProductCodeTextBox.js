@@ -4,7 +4,7 @@ const TextInputBoxWithStylesProdId = ({valuecode, setValuecode}) => {
   const [focused, setFocused] = useState(false);
 
   // Define a variable for the placeholder text
-  var placeholderText = 'Enter Product Code';
+  var placeholderText = 'Enter Location';
 
   const handleFocus = () => {
     setFocused(true);
