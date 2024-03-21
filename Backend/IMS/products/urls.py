@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    
     path('post/',views.post),
     path('delete/<int:pk>/',views.Delete.as_view()),
     path('user_add/',views.user_add),
