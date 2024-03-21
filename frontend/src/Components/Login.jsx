@@ -22,57 +22,53 @@
 //   )
 // }
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export default function Login() {
-  const [user_name, setEmail] = useState('');
+export default function Login({ onLogin }) {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Make API request to backend with user credentials
     try {
       const response = await fetch('http://127.0.0.1:8000/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_name, password }),
+        body: JSON.stringify({ username, password }),
       });
 
       const statusCode = response.status;
 
       if (statusCode === 200) {
-        // Redirect to home page upon successful login
-        window.location.href = '/home';
-      } else if(statusCode === 400){
-        // Handle error cases such as invalid credentials
-        console.error('Login failed');
-      }
-      else{
-        console.error('no response code');
+        // Successful login
+        onLogin(); // Trigger the login action
+      } else if (statusCode === 400) {
+        setError('Invalid username or password');
+      } else {
+        setError('An unexpected error occurred');
       }
     } catch (error) {
-      console.error('Error occurred while logging in:', error);
+      setError('Error occurred while logging in');
     }
   };
 
   return (
-    <div className='login'>
+    <div className="login">
       <div className="loginContent">
-        <span id='login'>Login</span>
+        <span id="login">Login</span>
         <form onSubmit={handleSubmit}>
-          <span id="email">Email</span><br />
+          <span id="email">Username</span><br />
           <input
-            type="username"
-            name="email"
-            id="emailInput"
-            placeholder='Enter Email'
-            value={user_name}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            name="username"
+            id="usernameInput"
+            placeholder="Enter Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           /><br />
           <p className='pwd'>
@@ -80,14 +76,15 @@ export default function Login() {
             <input
               type="password"
               name="password"
-              id="pwdInput"
-              placeholder='Enter Password'
+              id="passwordInput"
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </p>
           <button id="loginBtn" type="submit">LOG IN</button>
+          {error && <p className="error">{error}</p>}
         </form>
       </div>
     </div>
