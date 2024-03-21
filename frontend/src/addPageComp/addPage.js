@@ -1,5 +1,5 @@
 // MyComponent.js
-import React from "react";
+import React, { useState }  from "react";
 import TextInputBoxWithStylesProdId from "./textbox/AddProductIdTextBox";
 import TextInputBoxWithStylesName from "./textbox/AddNameTextBox";
 import TextInputBoxWithStylesProdCode from "./textbox/AddProductIdTextBox";
