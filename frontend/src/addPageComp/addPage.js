@@ -1,5 +1,5 @@
-// MyComponent.js
 import React, { useState } from "react";
+import axios from 'axios'; // Import Axios library
 import TextInputBoxWithStylesProdId from "./textbox/AddProductIdTextBox";
 import TextInputBoxWithStylesName from "./textbox/AddNameTextBox";
 import TextInputBoxWithStylesProdCode from "./textbox/AddProductIdTextBox";
@@ -15,6 +15,39 @@ function MyComponent() {
   const [valueid, setValueid] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
   const [accessLevel, setAccessLevel] = useState('user'); // Default value
+
+  // Function to handle form submission and API call
+  const handleSubmit = async () => {
+    try {
+      // Make a POST request to your API endpoint
+      const response = await axios.post('https://your-api-endpoint.com/data', {
+        quantity,
+        valuename,
+        valuedesc,
+        location,
+        valueid,
+        isFavorite,
+        accessLevel
+      });
+
+      // Handle successful response
+      console.log("API Response:", response.data);
+
+      // Clear the form or do any other necessary actions upon successful submission
+      // For example, you can reset the form fields
+      setQuantity(0);
+      setValuename('');
+      setValuedesc('');
+      setLocation('');
+      setValueid('');
+      setIsFavorite(false);
+      setAccessLevel('user'); // Reset access level to default value
+    } catch (error) {
+      // Handle errors
+      console.error("API Error:", error);
+      // You can also display an error message to the user
+    }
+  };
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -194,37 +227,42 @@ function MyComponent() {
         </div>
       </div>
 
-      // Checkbox for favorite items
-<div style={{ position: "absolute", left: 700, top: 250, alignItems: "center" }}>
-  <label style={{ color: "#042453", fontSize: 30, fontFamily: "Garamond", fontWeight: "700", marginRight: 10 }}>
-    Favorite Item:
-  </label>
-  <input
-    type="checkbox"
-    checked={isFavorite}
-    onChange={() => setIsFavorite(!isFavorite)}
-    style={{ marginLeft: 10 }}
-  />
-</div>
+      {/* Checkbox for favorite items */}
+      <div style={{ position: "absolute", left: 700, top: 250, alignItems: "center" }}>
+        <label style={{ color: "#042453", fontSize: 30, fontFamily: "Garamond", fontWeight: "700", marginRight: 10 }}>
+          Favorite Item:
+        </label>
+        <input
+          type="checkbox"
+          checked={isFavorite}
+          onChange={() => setIsFavorite(!isFavorite)}
+          style={{ marginLeft: 10 }}
+        />
+      </div>
 
+      {/* Dropdown list for access level */}
+      <div style={{ position: "absolute", left: 700, top: 325 }}>
+        <label style={{ color: "#042453", fontSize: 30, fontFamily: "Garamond", fontWeight: "700" }}>
+          Access Level:<br></br>
+          <select
+            value={accessLevel}
+            onChange={(e) => setAccessLevel(e.target.value)}
+            style={{ marginLeft: 10, border: '3px #042453 solid', borderRadius: 10 }}
+          >
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </label>
+      </div>
 
-// Dropdown list for access level
-<div style={{ position: "absolute", left: 700, top: 325 }}>
-  <label style={{ color: "#042453", fontSize: 30, fontFamily: "Garamond", fontWeight: "700" }}>
-    Access Level:<br></br>
-    <select
-      value={accessLevel}
-      onChange={(e) => setAccessLevel(e.target.value)}
-      style={{ marginLeft: 10, border: '3px #042453 solid', borderRadius: 10 }}
-    >
-      <option value="admin">Admin</option>
-      <option value="user">User</option>
-    </select>
-  </label>
-</div>
+      {/* Button to submit data to the API */}
+      <div style={{ position: "absolute"}}>
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
 
     </div>
   );
 }
 
 export default MyComponent;
+
