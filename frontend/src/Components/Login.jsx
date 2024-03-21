@@ -24,6 +24,7 @@
 
 import React, { useState } from 'react';
 
+
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -84,7 +85,7 @@ export default function Login({ onLogin }) {
             />
           </p>
           <button id="loginBtn" type="submit">LOG IN</button>
-          {error && <p className="error">{error}</p>}
+          {error && <p className="error">{}</p>}
         </form>
       </div>
     </div>

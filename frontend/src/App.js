@@ -37,11 +37,27 @@ function App() {
                 </>
               }
             ></Route>
-            <Route path="/add" element={<MyComponent />}></Route>
-            <Route path="/issued" element={<Issued />}></Route>
-            <Route path="/audit" element={<Audit />}></Route>
-            <Route path="/product" element={<DescriptionPage />}></Route>
-            <Route path="/edit" element={<EditPage />}></Route>
+            <Route path="/add" element={<><Pagebg />
+                  <div style={{ marginLeft: '20%', paddingTop: '5%' }}>
+                    <MyComponent />
+                  </div></>}></Route>
+            <Route path="/issued" element={
+            <><Pagebg />
+            <div style={{ marginLeft: '20%', paddingTop: '5%' }}>
+              <Issued />
+            </div></>}></Route>
+            <Route path="/audit" element={<><Pagebg />
+            <div style={{ marginLeft: '20%', paddingTop: '5%' }}>
+              <Audit />
+            </div></>}></Route>
+            <Route path="/product" element={<><Pagebg />
+            <div style={{ marginLeft: '20%', paddingTop: '5%' }}>
+              <DescriptionPage />
+            </div></>}></Route>
+            <Route path="/edit" element={<><Pagebg />
+            <div style={{ marginLeft: '20%', paddingTop: '5%' }}>
+              <EditPage />
+            </div></>}></Route>
           </Routes>
         </Router>
       )}
