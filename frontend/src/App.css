@@ -113,7 +113,9 @@ body{
 .card:hover .hoverBtn{
 	display: block;
 }
-
+.hoverBtn:hover{
+	cursor: pointer;
+}
 
 .card-img-top{
 	width: 294px;

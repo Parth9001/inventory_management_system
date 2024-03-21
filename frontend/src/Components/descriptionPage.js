@@ -25,6 +25,7 @@ export default function DescriptionPage() {
               boxShadow: '20px 20px 50px 5px rgba(0, 21.48, 32.73, 0.75) inset',
               borderTopLeftRadius: 200,
               border: '1px #024162 solid',
+              zIndex: -1
             }}
             src=""
           />
@@ -38,9 +39,10 @@ export default function DescriptionPage() {
               background: 'transparent',
               borderRadius: 30,
               border: '3px #042453 solid',
+              zIndex: 1
             }}
           >
-            <img src={productData.imgSrc} alt="Product" />
+            <img src={productData.imgSrc} alt="Product" style={{zIndex: 1}}/>
           </div>
           <div
             style={{
@@ -55,11 +57,12 @@ export default function DescriptionPage() {
               fontFamily: 'Garamond',
               fontWeight: '400',
               wordWrap: 'break-word',
+              zIndex: 1
             }}
           >
             {productData.productName}
           </div>
-          <div style={{ width: 888.06, height: 587, left: 151.94, top: 229, position: 'absolute' }}>
+          <div style={{ width: 888.06, height: 587, left: 151.94, top: 229, position: 'absolute', zIndex: 1 }}>
             <div style={{ width: 410, height: 261, left: 478.06, top: 0, position: 'absolute' }}>
               <div style={{ width: 410, height: 54, left: 0, top: 69, position: 'absolute' }}>
                 <div
@@ -74,6 +77,7 @@ export default function DescriptionPage() {
                     fontFamily: 'Garamond',
                     fontWeight: '400',
                     wordWrap: 'break-word',
+                    zIndex: 1
                   }}
                 >
                   {productData.productID}
@@ -90,12 +94,13 @@ export default function DescriptionPage() {
                     fontFamily: 'Garamond',
                     fontWeight: '700',
                     wordWrap: 'break-word',
+                    zIndex: 1
                   }}
                 >
                   Product ID -
                 </div>
               </div>
-              <div style={{ width: 410, height: 54, left: 0, top: 138, position: 'absolute' }}>
+              <div style={{ width: 410, height: 54, left: 0, top: 138, position: 'absolute',  zIndex: 1 }}>
                 <div
                   style={{
                     width: 137,
@@ -108,6 +113,7 @@ export default function DescriptionPage() {
                     fontFamily: 'Garamond',
                     fontWeight: '400',
                     wordWrap: 'break-word',
+                    zIndex: 1
                   }}
                 >
                   {productData.productcode}
@@ -124,12 +130,13 @@ export default function DescriptionPage() {
                     fontFamily: 'Garamond',
                     fontWeight: '700',
                     wordWrap: 'break-word',
+                    zIndex: 1
                   }}
                 >
                   Product Code -
                 </div>
               </div>
-              <div style={{ width: 410, height: 54, left: 0, top: 207, position: 'absolute' }}>
+              <div style={{ width: 410, height: 54, left: 0, top: 207, position: 'absolute', zIndex: 1 }}>
                 <div
                   style={{
                     width: 30,
@@ -142,6 +149,7 @@ export default function DescriptionPage() {
                     fontFamily: 'Garamond',
                     fontWeight: '400',
                     wordWrap: 'break-word',
+                    zIndex: 1
                   }}
                 >
                   {productData.quantity}
@@ -158,6 +166,7 @@ export default function DescriptionPage() {
                     fontFamily: 'Garamond',
                     fontWeight: '700',
                     wordWrap: 'break-word',
+                    zIndex: 1
                   }}
                 >
                   Stock Available -{' '}
@@ -176,6 +185,7 @@ export default function DescriptionPage() {
                 fontFamily: 'Garamond',
                 fontWeight: '400',
                 wordWrap: 'break-word',
+                zIndex: 1
               }}
             >
               {productData.description}
@@ -190,6 +200,7 @@ export default function DescriptionPage() {
                 fontFamily: 'Garamond',
                 fontWeight: '700',
                 wordWrap: 'break-word',
+                zIndex: 1
               }}
             >
               Description

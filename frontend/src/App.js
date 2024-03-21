@@ -7,6 +7,7 @@ import MyComponent from './addPageComp/addPage';
 import EditPage from './editPageComp/editPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Audit from './Components/audit'
+import DescriptionPage from './Components/descriptionPage';
 
 function App() {
   return (
