@@ -21,11 +21,10 @@ class Products(models.Model):
         return self.name
 
 class User(models.Model):
-    user_name = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     Designation = models.CharField(max_length=255,default='')
     access_level = models.CharField(max_length=255, default="")
-    user_id = models.CharField(max_length=255,unique=True)
-    products_issued=models.ManyToManyField(Products)
+    products_issued=models.ManyToManyField(Products, default=list)
     def __str__(self) -> str:
-        return self.user_name
+        return self.username
