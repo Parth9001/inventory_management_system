@@ -13,7 +13,7 @@ export default function AuditCard() {
   const fetchData = async () => {
     try {
       // Make API call to fetch data
-      const response = await fetch('YOUR_API_ENDPOINT');
+      const response = await fetch('http://127.0.0.1:8000');
       const data = await response.json();
       setRowData(data); // Update rowData state with fetched data
     } catch (error) {
@@ -48,7 +48,7 @@ export default function AuditCard() {
                 {/* Map through rowData to render multiple rows */}
                 {rowData.map((row, index) => (
                   <div key={index} style={{ width: '100%', height: 15, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                    <div style={{ color: '#042453', fontSize: 20, fontFamily: 'Garamond', fontWeight: '700', flex: '1' }}>{row.userName}</div>
+                    <div style={{ color: '#042453', fontSize: 20, fontFamily: 'Garamond', fontWeight: '700', flex: '1' }}>{row.name}</div>
                     <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1' }}>{row.userID}</div>
                     <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1' }}>{row.dateTime}</div>
                     <div style={{ color: '#4C7ED5', fontSize: 20, fontFamily: 'Garamond', fontWeight: '400', flex: '1' }}>{row.data}</div>
