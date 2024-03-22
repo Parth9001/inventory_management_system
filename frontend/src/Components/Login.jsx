@@ -41,7 +41,7 @@ export default function Login({ onLogin }) {
           <span id="email">Username</span><br />
           <input
             style={{
-              width: '300px',
+              width: '400px',
               height: '50.6px',
               background: 'white',
               boxShadow: '0px 4px 20px 4px rgba(0, 0, 0, 0.50)',
@@ -66,7 +66,7 @@ export default function Login({ onLogin }) {
             <span id="pwd">Password</span><br />
             <input
               style={{
-                width: '300px',
+                width: '400px',
                 height: '50.6px',
                 background: 'white',
                 boxShadow: '0px 4px 20px 4px rgba(0, 0, 0, 0.50)',
