@@ -14,7 +14,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    // Perform login logic here
     setIsLoggedIn(true);
   };
 
@@ -24,11 +23,9 @@ function App() {
         <Login onLogin={handleLogin} />
       ) : (
         <Router>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
+         <Routes>
+         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route exact path="/" element={
                 <>
                   <Pagebg />
                   <div style={{ marginLeft: '20%', paddingTop: '5%' }}>
