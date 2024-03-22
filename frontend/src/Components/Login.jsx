@@ -1,27 +1,3 @@
-// import React from 'react'
-
-// export default function Login() {
-//   return (
-//     <div className='login'>
-//         <div className="loginContent">
-//             <span id='login'>Login</span>
-//             <form action="">
-//                 <span id="email">Email</span><br />
-//                 <input type="email" name="email" id="emailInput" placeholder='Enter Email' required/><br />
-//                 <p className='pwd'>
-//                     <span id="pwd">Password</span><br />
-//                     <input type="password" name="password" id="pwdInput" placeholder='Enter Password' required/>
-//                 </p>
-//                 <button id="loginBtn" type="submit">LOG IN</button>
-
-//             </form>
-
-//         </div>
-
-//     </div>
-//   )
-// }
-
 import React, { useState } from 'react';
 
 
@@ -64,6 +40,20 @@ export default function Login({ onLogin }) {
         <form onSubmit={handleSubmit}>
           <span id="email">Username</span><br />
           <input
+            style={{
+              width: '300px',
+              height: '50.6px',
+              background: 'white',
+              boxShadow: '0px 4px 20px 4px rgba(0, 0, 0, 0.50)',
+              borderRadius: 30,
+              // Placeholder text style
+              color: '#4C7ED5',
+              fontSize: 20,
+              fontFamily: 'Garamond',
+              fontWeight: '400',
+              wordWrap: 'break-word',
+              paddingLeft: '20px' // Margin from the right
+            }}
             type="text"
             name="username"
             id="usernameInput"
@@ -75,6 +65,20 @@ export default function Login({ onLogin }) {
           <p className='pwd'>
             <span id="pwd">Password</span><br />
             <input
+              style={{
+                width: '300px',
+                height: '50.6px',
+                background: 'white',
+                boxShadow: '0px 4px 20px 4px rgba(0, 0, 0, 0.50)',
+                borderRadius: 30,
+                // Placeholder text style
+                color: '#4C7ED5',
+                fontSize: 20,
+                fontFamily: 'Garamond',
+                fontWeight: '400',
+                wordWrap: 'break-word',
+                paddingLeft: '20px' // Margin from the right
+              }}
               type="password"
               name="password"
               id="passwordInput"
@@ -84,10 +88,10 @@ export default function Login({ onLogin }) {
               required
             />
           </p>
-          <button id="loginBtn" type="submit">LOG IN</button>
+          <button id="loginBtn" type="submit">LOGIN</button>
           {error && <p className="error">{}</p>}
         </form>
       </div>
     </div>
   );
-}
+}  
