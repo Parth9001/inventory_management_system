@@ -7,6 +7,10 @@ export class Home extends Component {
 		super();
 		this.state = {
 			products: [],
+			searchQuery: "",
+			sortBy: "",
+			min: 0,
+      		max: 0,
 		};
 	}
 
@@ -22,7 +26,41 @@ export class Home extends Component {
 		this.setState({ products: parsedData });
 	}
 
+	handleSearchChange = (event) => {
+		this.setState({ searchQuery: event.target.value });
+	};
+
+	handleSortChange = (event) => {
+		this.setState({ sortBy: event.target.value });
+	};
+
+	handleFilterChange = (event) => {
+		const { name, value } = event.target;
+		this.setState({ [name]: parseInt(value) });
+		// console.log([name]+" "+value)
+	};
+
 	render() {
+
+		const { products, searchQuery, sortBy, min, max } = this.state;
+
+		let filteredProducts = products.filter((product) =>
+			product.name.toLowerCase().includes(searchQuery.toLowerCase())
+		);
+
+
+		if (sortBy === "name") {
+			filteredProducts.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" }));
+		} else if (sortBy === "quantity") {
+			filteredProducts.sort((a, b) => a.quantity - b.quantity);
+		}
+
+		if (min !== 0 || max !== 0) {
+			filteredProducts = filteredProducts.filter(
+			  (product) => product.quantity >= (min==null ? 0 : parseInt(min)) &&  product.quantity <= (max!=0 ?  parseInt(max) : 1000000)
+			);
+		}
+
 		return (
 			<div style={{ width: "100%", position: "relative" }}>
 				<div
@@ -63,7 +101,7 @@ export class Home extends Component {
 					className="search"
 					style={{ paddingTop: "20%", paddingLeft: "8%", zIndex: 1 }}
 				>
-					<Search />
+					<Search handleSearchChange={this.handleSearchChange} handleSortChange={this.handleSortChange} handleFilterChange={this.handleFilterChange} />
 				</div>
 
 				<div
@@ -75,7 +113,7 @@ export class Home extends Component {
 						position: "relative",
 					}}
 				>
-					{this.state.products.map((element) => {
+					{filteredProducts.map((element) => {
 						return (
 							<div
 								className="col-4"
