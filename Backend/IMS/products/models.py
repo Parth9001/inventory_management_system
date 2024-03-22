@@ -25,7 +25,7 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     user_id=models.CharField(max_length=255,unique=True)
     Designation = models.CharField(max_length=255,default='')
-    access_level = models.CharField(max_length=255, default="")
+    access_level = models.CharField(max_length=255, default="Student")
     products_issued=models.ManyToManyField(Products, default=list)
     def __str__(self) -> str:
         return self.username

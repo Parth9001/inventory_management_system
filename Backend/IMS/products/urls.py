@@ -12,4 +12,5 @@ urlpatterns = [
     path('', views.get_info),
     path('issue_product/',views.issue_product),
     path('user_products_issued/<str:product_id>',views.get_user_products),
+    path('product_info/',views.get_product_info),
 ]

@@ -145,3 +145,14 @@ def get_user_products(request, product_id):
             return Response(data, status=status.HTTP_200_OK)
         except Products.DoesNotExist:
             return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['POST'])
+def get_product_info(request):
+    try:
+        product_id = request.data.get('product_id')
+        product = Products.objects.get(product_id=product_id)
+        serializer = PSerializer(product)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Products.DoesNotExist:
+        return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
