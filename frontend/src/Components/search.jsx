@@ -1,7 +1,7 @@
 import React from 'react'
 import './search.css';
 
-export default function Search() {
+export default function Search({ handleSearchChange, handleSortChange, handleFilterChange }) {
   return (
     <div className='searchbar row'>
         <div className="search col-6">
@@ -9,7 +9,7 @@ export default function Search() {
                 <path d="M7.54997 31.25C10.4348 34.1389 14.2766 35.8732 18.3514 36.1261C22.4263 36.379 26.453 35.133 29.6729 32.6229L40.7521 43.7021C41.145 44.0816 41.6712 44.2916 42.2175 44.2868C42.7637 44.2821 43.2862 44.063 43.6725 43.6767C44.0588 43.2904 44.2779 42.7679 44.2826 42.2217C44.2874 41.6754 44.0774 41.1492 43.6979 40.7563L32.6187 29.6771C35.2402 26.3128 36.4796 22.0753 36.0841 17.8287C35.6886 13.5821 33.6881 9.64624 30.4906 6.82389C27.293 4.00153 23.1392 2.50524 18.8763 2.64017C14.6135 2.7751 10.5627 4.53108 7.54997 7.55001C5.9933 9.10588 4.75843 10.9532 3.91592 12.9865C3.07341 15.0198 2.63977 17.1991 2.63977 19.4C2.63977 21.6009 3.07341 23.7803 3.91592 25.8135C4.75843 27.8468 5.9933 29.6941 7.54997 31.25ZM10.4958 10.5C12.5553 8.44052 15.2652 7.15884 18.1638 6.87333C21.0623 6.58782 23.9702 7.31615 26.392 8.93422C28.8137 10.5523 30.5996 12.96 31.4452 15.7471C32.2908 18.5342 32.1439 21.5283 31.0295 24.2193C29.9151 26.9102 27.9021 29.1316 25.3336 30.5048C22.765 31.878 19.7998 32.3181 16.9431 31.7502C14.0865 31.1823 11.5151 29.6415 9.66704 27.3903C7.81903 25.1391 6.80874 22.3168 6.8083 19.4042C6.80259 17.7491 7.1256 16.1094 7.75861 14.5802C8.39162 13.0509 9.32201 11.6626 10.4958 10.4958V10.5Z" fill="#497BD0"/>
             </svg>
 
-            <input type="text" name="search" id="searchTxt" placeholder='search'/>
+            <input type="text" name="search" id="searchTxt" placeholder='search' onChange={handleSearchChange}/>
         </div>
 
         <div className="sort col-3">
@@ -20,10 +20,10 @@ export default function Search() {
                 <path d="M30.6 14.4143H19.4C18.9264 14.4143 18.4722 14.2262 18.1373 13.8913C17.8024 13.5564 17.6143 13.1022 17.6143 12.6286C17.6143 12.155 17.8024 11.7008 18.1373 11.3659C18.4722 11.031 18.9264 10.8429 19.4 10.8429H30.6C31.0736 10.8429 31.5278 11.031 31.8627 11.3659C32.1975 11.7008 32.3857 12.155 32.3857 12.6286C32.3857 13.1022 32.1975 13.5564 31.8627 13.8913C31.5278 14.2262 31.0736 14.4143 30.6 14.4143Z" fill="#497BD0"/>
             </svg>
 
-            <select name="" id="sortDrop" >
+            <select name="" id="sortDrop" onChange={handleSortChange} >
                 <option value="" disabled selected>Sort</option>
-                <option value="">Name</option>
-                <option value="">Quantity</option>
+                <option value="name">Name</option>
+                <option value="quantity">Quantity</option>
                 <option value="">Product Type</option>
             </select>
         </div>
@@ -40,7 +40,7 @@ export default function Search() {
                     Filter
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-item" >Quantity <input type="number" name="min" id="min" placeholder='min' min={0}/> to <input type="number" name="max" id="max" placeholder='max' min={0}/></li>
+                    <li class="dropdown-item" >Quantity <input type="number" name="min" id="min" placeholder='min' min={0} onChange={handleFilterChange}/> to <input type="number" name="max" id="max" placeholder='max' min={0} onChange={handleFilterChange}/></li>
                     <li class="dropdown-item" >Product Type <br />
                         <input type="checkbox" name="" id=""/>A <br />
                         <input type="checkbox" name="" id=""/>B <br />

@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect
-from .models import Products, User
+from django.shortcuts import render, HttpResponse,redirect
+from .models import Products,User
 from rest_framework.generics import ListAPIView
 from rest_framework import filters
 from rest_framework.response import Response
@@ -8,17 +8,15 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
 from .serializers import *
-import django, datetime
-
+import django
 
 # Create your views here.
 @api_view(['GET'])
 def get_info(request):
     # return render(request,'info.html',{'products':Products.objects.all().values()})
     Objects = Products.objects.all()
-    serializer = PSerializer(Objects, many=True)
+    serializer = PSerializer(Objects,many=True)
     return Response(serializer.data)
-
 
 @api_view(['POST'])
 def post(request):
@@ -37,20 +35,18 @@ class Delete(APIView):
         except Products.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-
 class Put(APIView):
     def put(self, request, pk, format=None):
         try:
             instance = Products.objects.get(pk=pk)
         except Products.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
+        
         serializer = PSerializer(instance, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['POST'])
 def user_add(request):
@@ -59,13 +55,11 @@ def user_add(request):
         serializer.save()
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def user_list(request):
     users = User.objects.all()
-    serializer = USerializer(users, many=True)
+    serializer = USerializer(users,many=True)
     return Response(serializer.data)
-
 
 # @api_view(['POST'])
 # def search(request):
@@ -83,10 +77,8 @@ class SearchAPIView(ListAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
 
-
 class LoginAPIView(APIView):
     permission_classes = [AllowAny]
-
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
@@ -95,41 +87,37 @@ class LoginAPIView(APIView):
             # Perform login actions here if needed
             return Response(s.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
 @api_view(['POST'])
 def issue_product(request):
     if request.method == 'POST':
         username = request.data.get('username', None)
         product_id = request.data.get('product_id', None)
-        quantity = request.data.get('quantity', None)
-
-        if not username or not product_id or not quantity:
+        
+        if not username or not product_id:
             return Response({'error': 'Username and product ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
-
+        
         try:
             user = User.objects.get(username=username)
             product = Products.objects.get(product_id=product_id)
-
+            
             if product.quantity <= 0:
                 return Response({'error': 'Product is out of stock.'}, status=status.HTTP_400_BAD_REQUEST)
-            issued_datetime = datetime.datetime.now()
-            user.products_issued.add(product,
-                                     through_defaults={'issued_datetime': issued_datetime, 'quantity': quantity})
+            
+            user.products_issued.add(product)
             product.save()
             user.save()
-
+            
             return Response({'message': 'Product issued successfully.'}, status=status.HTTP_200_OK)
-
+        
         except User.DoesNotExist:
             return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
-
+        
         except Products.DoesNotExist:
             return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-
 @api_view(['GET'])
-def get_user_products(request, product_id):
+def get_user_products(request, username):
     if request.method == 'GET':
         try:
             product = Products.objects.get(product_id=product_id)
