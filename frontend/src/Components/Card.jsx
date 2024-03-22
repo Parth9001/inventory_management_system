@@ -1,9 +1,28 @@
 import React, { Component } from "react";
-import Remove from "./assets/Remove.svg";
+import Delete from "./assets/delete.svg";
 import Edit from "./assets/Edit.svg";
 import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
+	handleDelete = async () => {
+		try {
+			const response = await fetch(`http://127.0.0.1:8000/products/${this.props.prodID}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			if (response.ok) {
+				console.log("Product deleted successfully");
+			} else {
+				console.error('Failed to delete product');
+			}
+		} catch (error) {
+			console.error('Error deleting product:', error);
+		}
+	};
+
+
 	render() {
 		return (
 			<div className="card">
@@ -34,11 +53,11 @@ export default class Card extends Component {
 						}}
 					></div>
 
-					<img src={Remove} alt="" style={{left:0, marginLeft:'63%', marginTop:'-20%'}}/>
+					<img src={Delete} alt="" style={{left:0, marginLeft:'63%', marginTop:'-23%'}} onClick={this.handleDelete}/>
 				</div>
 				<img src="..." className="card-img-top" alt="..."/>
 				<div className="card-body">
-					<h5 className="card-title">{this.props.name}</h5>
+					<Link to="/prodInfo"><h5 className="card-title">{this.props.name}</h5></Link>
 					<p className="prdct-type">Product Type</p>
 					<p className="stock">
 						Stock Available : <span>{this.props.quantity}</span>

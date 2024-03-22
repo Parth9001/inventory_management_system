@@ -47,11 +47,11 @@ export class Home extends Component {
 
 	render() {
 
-		const { products, searchQuery, sortBy, min, max } = this.state;
+		const { products, searchQuery, sortBy, min, max, showFavorites } = this.state;
 
 		let filteredProducts = products.filter((product) =>
 			product.name.toLowerCase().includes(searchQuery.toLowerCase())  &&
-            (this.state.showFavorites ? product.favourites : true)
+            (showFavorites ? product.favourites : true)
 		);
 
 
@@ -129,6 +129,7 @@ export class Home extends Component {
 								<Card
 									name={element.name}
 									quantity={element.quantity}
+									prodID={element.id}
 								/>
 							</div>
 						);
