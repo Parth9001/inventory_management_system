@@ -11,6 +11,7 @@ export class Home extends Component {
 			sortBy: "",
 			min: 0,
       		max: 0,
+			showFavorites: false,
 		};
 	}
 
@@ -40,12 +41,17 @@ export class Home extends Component {
 		// console.log([name]+" "+value)
 	};
 
+	toggleShowFavorites = () => {
+        this.setState({ showFavorites: !this.state.showFavorites});
+    };
+
 	render() {
 
 		const { products, searchQuery, sortBy, min, max } = this.state;
 
 		let filteredProducts = products.filter((product) =>
-			product.name.toLowerCase().includes(searchQuery.toLowerCase())
+			product.name.toLowerCase().includes(searchQuery.toLowerCase())  &&
+            (this.state.showFavorites ? product.favourites : true)
 		);
 
 
@@ -101,7 +107,7 @@ export class Home extends Component {
 					className="search"
 					style={{ paddingTop: "20%", paddingLeft: "8%", zIndex: 1 }}
 				>
-					<Search handleSearchChange={this.handleSearchChange} handleSortChange={this.handleSortChange} handleFilterChange={this.handleFilterChange} />
+					<Search handleSearchChange={this.handleSearchChange} handleSortChange={this.handleSortChange} handleFilterChange={this.handleFilterChange} toggleShowFavorites={this.toggleShowFavorites} />
 				</div>
 
 				<div
