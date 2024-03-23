@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-
+import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +22,8 @@ export default function Login({ onLogin }) {
 
       if (statusCode === 200) {
         // Successful login
-        onLogin(); // Trigger the login action
+        onLogin();
+        // Trigger the login action
       } else if (statusCode === 400) {
         setError('Invalid username or password');
       } else {
