@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Products,User
+from .models import Products,User,ProductLog
 from django.contrib.auth import authenticate
 
     
@@ -8,7 +8,7 @@ class USerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__' 
 class PSerializer(serializers.ModelSerializer):   
-    issued_to=USerializer(many=True, read_only=True)
+    # issued_to=USerializer(many=True, read_only=True)
     class Meta:
         model = Products
         fields = '__all__' 
@@ -30,3 +30,8 @@ class LoginSerializer(serializers.Serializer):
         else:
             raise serializers.ValidationError("Must include 'username' and 'password'.")
         return data
+    
+class PLogSerializer(serializers.ModelSerializer):   
+    class Meta:
+        model = ProductLog
+        fields = '__all__'

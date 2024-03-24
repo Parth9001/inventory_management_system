@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse,redirect
-from .models import Products,User
+from .models import Products,User,ProductLog
 from rest_framework.generics import ListAPIView
 from rest_framework import filters
 from rest_framework.response import Response
@@ -89,72 +89,101 @@ class LoginAPIView(APIView):
             return Response(s.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['POST'])
-def issue_product(request):
-    if request.method == 'POST':
-        username = request.data.get('username', None)
-        product_id = request.data.get('product_id', None)
+# @api_view(['POST'])
+# def issue_product(request):
+#     if request.method == 'POST':
+#         username = request.data.get('username', None)
+#         product_id = request.data.get('product_id', None)
+#         quantity = request.data.get('quantity', None)        
         
-        if not username or not product_id:
-            return Response({'error': 'Username and product ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
+#         if not username or not product_id or not quantity:
+#             return Response({'error': 'Username, product ID and quantity are required.'}, status=status.HTTP_400_BAD_REQUEST)
         
-        try:
-            user = User.objects.get(username=username)
-            product = Products.objects.get(product_id=product_id)
+#         try:
+#             user = User.objects.get(username=username)
+#             product = Products.objects.get(product_id=product_id)
+#             product.quantity-=int(quantity)
+#             if product.quantity <= 0:
+#                 return Response({'error': 'Product is out of stock.'}, status=status.HTTP_400_BAD_REQUEST)
             
-            if product.quantity <= 0:
-                return Response({'error': 'Product is out of stock.'}, status=status.HTTP_400_BAD_REQUEST)
+#             user.products_issued.add(product)
+#             product.save()
+#             user.save()
             
-            user.products_issued.add(product)
-            product.save()
-            user.save()
-            
-            return Response({'message': 'Product issued successfully.'}, status=status.HTTP_200_OK)
+#             return Response({'message': 'Product issued successfully.'}, status=status.HTTP_200_OK)
         
-        except User.DoesNotExist:
-            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+#         except User.DoesNotExist:
+#             return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-        except Products.DoesNotExist:
-            return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+#         except Products.DoesNotExist:
+#             return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+# @api_view(['POST'])
+# def get_users_of_products(request):
+#     # user_name=request.data.get('username')
+#     try:
+#             product_id = request.data.get('product_id')
+#             product = Products.objects.get(product_id=product_id)
+#             users_issued = product.user_set.all()
+#             data = []
+#             for user in users_issued:
+#                 issued_data = {
+#                     'username': user.username,
+#                     'issued_datetime': user.products_issued.filter(product_id=product_id).first().issued_datetime,
+#                     'quantity': user.products_issued.filter(product_id=product_id).first().quantity
+#                 }
+#                 data.append(issued_data)
+#             return Response(data, status=status.HTTP_200_OK)
+#         # user=User.objects.get(username=user_name)
+#         # products=user.products_issued
+#         # serializer=PSerializer(products)
+#         # return Response(serializer.data, status=status.HTTP_200_OK)
+
+#     except Products.DoesNotExist:
+#         return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
+
 
 @api_view(['POST'])
-def get_user_products(request):
-    user_name=request.data.get('username')
+def get_product_info(request):
     try:
-            # product = Products.objects.get(product_id=product_id)
-            # users_issued = product.user_set.all()
-            # data = []
-            # for user in users_issued:
-            #     issued_data = {
-            #         'username': user.username,
-            #         'issued_datetime': user.products_issued.filter(product_id=product_id).first().issued_datetime,
-            #         'quantity': user.products_issued.filter(product_id=product_id).first().quantity
-            #     }
-            #     data.append(issued_data)
-            # return Response(data, status=status.HTTP_200_OK)
-        user=User.objects.get(username=user_name)
-        products=user.products_issued
-        serializer=PSerializer(products)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    except Products.DoesNotExist:
-        return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
-
-
-@api_view(['POST'])
-def get_product_info(request, pk):
-    try:
+        pk = request.data.get('pk')
         product = Products.objects.get(product_id=pk)
         serializer = PSerializer(product)
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Products.DoesNotExist:
         return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-@api_view(['GET'])
-def get_issued_products(request):
+# @api_view(['GET'])
+# def get_issued_products(request):
+#     try:
+#         products=Products.objects.filter(issued_to__isnull=False)
+#         serializer=PSerializer(products, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+#     except Products.DoesNotExist:
+#         return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def issue_product(request):
+    if request.method == 'POST':
+        product_id = request.data.get('product_id')
+        username = request.data.get('username')
+        quantity = int(request.data.get('quantity'))
+        product = Products.objects.get(product_id=product_id)
+        if quantity > product.quantity:
+            return render(request, 'error.html', {'error_message': 'Not enough quantity available.'})
+        else:
+            product.quantity -= quantity
+            product.save()
+            t = ProductLog(user=User.objects.get(username=username), product=product, quantity=quantity)
+            t.save()
+            return Response(PLogSerializer(ProductLog.objects.all(),many=True), status=status.HTTP_200_OK)
+        
+@api_view(['POST'])
+def get_log_of_product(request):
     try:
-        products=Products.objects.filter(issued_to__isnull=False)
-        serializer=PSerializer(products, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    except Products.DoesNotExist:
+        product_id = request.data.get('product_id')
+        product = Products.objects.get(product_id=product_id)
+        # serializer = PLogSerializer(ProductLog,many=True)
+        return Response(ProductLog.objects.get(product=product))
+    except:
         return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
