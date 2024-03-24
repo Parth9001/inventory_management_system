@@ -1,7 +1,7 @@
 import React from 'react'
 import './search.css';
 
-export default function Search({ handleSearchChange, handleSortChange, handleFilterChange }) {
+export default function Search({ handleSearchChange, handleSortChange, handleFilterChange, toggleShowFavorites }) {
   return (
     <div className='searchbar row'>
         <div className="search col-6">
@@ -24,7 +24,7 @@ export default function Search({ handleSearchChange, handleSortChange, handleFil
                 <option value="" disabled selected>Sort</option>
                 <option value="name">Name</option>
                 <option value="quantity">Quantity</option>
-                <option value="">Product Type</option>
+                {/* <option value="">Product Type</option> */}
             </select>
         </div>
 
@@ -41,11 +41,7 @@ export default function Search({ handleSearchChange, handleSortChange, handleFil
                 </button>
                 <ul class="dropdown-menu">
                     <li class="dropdown-item" >Quantity <input type="number" name="min" id="min" placeholder='min' min={0} onChange={handleFilterChange}/> to <input type="number" name="max" id="max" placeholder='max' min={0} onChange={handleFilterChange}/></li>
-                    <li class="dropdown-item" >Product Type <br />
-                        <input type="checkbox" name="" id=""/>A <br />
-                        <input type="checkbox" name="" id=""/>B <br />
-                        <input type="checkbox" name="" id=""/>C <br />
-                    </li>
+                    <li class="dropdown-item" > <input type="checkbox" name="" id="" onChange={toggleShowFavorites}/>Favourites</li>
                 </ul>
             </div>
 

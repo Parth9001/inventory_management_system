@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
+from django.db import models
 from .serializers import *
 import django
 
@@ -116,31 +117,44 @@ def issue_product(request):
         except Products.DoesNotExist:
             return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-@api_view(['GET'])
-def get_user_products(request, username):
-    if request.method == 'GET':
-        try:
-            product = Products.objects.get(product_id=product_id)
-            users_issued = product.user_set.all()
-            data = []
-            for user in users_issued:
-                issued_data = {
-                    'username': user.username,
-                    'issued_datetime': user.products_issued.filter(product_id=product_id).first().issued_datetime,
-                    'quantity': user.products_issued.filter(product_id=product_id).first().quantity
-                }
-                data.append(issued_data)
-            return Response(data, status=status.HTTP_200_OK)
-        except Products.DoesNotExist:
-            return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+@api_view(['POST'])
+def get_user_products(request):
+    user_name=request.data.get('username')
+    try:
+            # product = Products.objects.get(product_id=product_id)
+            # users_issued = product.user_set.all()
+            # data = []
+            # for user in users_issued:
+            #     issued_data = {
+            #         'username': user.username,
+            #         'issued_datetime': user.products_issued.filter(product_id=product_id).first().issued_datetime,
+            #         'quantity': user.products_issued.filter(product_id=product_id).first().quantity
+            #     }
+            #     data.append(issued_data)
+            # return Response(data, status=status.HTTP_200_OK)
+        user=User.objects.get(username=user_name)
+        products=user.products_issued
+        serializer=PSerializer(products)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    except Products.DoesNotExist:
+        return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['POST'])
-def get_product_info(request):
+def get_product_info(request, pk):
     try:
-        product_id = request.data.get('product_id')
-        product = Products.objects.get(product_id=product_id)
+        product = Products.objects.get(product_id=pk)
         serializer = PSerializer(product)
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Products.DoesNotExist:
         return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def get_issued_products(request):
+    try:
+        products=Products.objects.filter(issued_to__isnull=False)
+        serializer=PSerializer(products, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Products.DoesNotExist:
+        return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)

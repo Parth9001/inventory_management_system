@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TextInputBoxWithStylesProdCode = ({valueid, setValueid}) => {
+const TextInputBoxWithStylesProdCode = ({id, setid}) => {
   const [focused, setFocused] = useState(false);
 
   // Define a variable for the placeholder text
@@ -11,20 +11,20 @@ const TextInputBoxWithStylesProdCode = ({valueid, setValueid}) => {
   };
 
   const handleBlur = () => {
-    if (!valueid) {
+    if (!id) {
       setFocused(false);
     }
   };
 
   const handleChange = (event) => {
-    setValueid(event.target.valueid);
+    setid(event.target.id);
   };
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <input
         type="text"
-        valueid={valueid}
+        id={id}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}

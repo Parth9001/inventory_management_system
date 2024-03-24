@@ -2,14 +2,15 @@ from rest_framework import serializers
 from .models import Products,User
 from django.contrib.auth import authenticate
 
-class PSerializer(serializers.ModelSerializer):   
-    class Meta:
-        model = Products
-        fields = '__all__' 
     
 class USerializer(serializers.ModelSerializer):   
     class Meta:
         model = User
+        fields = '__all__' 
+class PSerializer(serializers.ModelSerializer):   
+    issued_to=USerializer(many=True, read_only=True)
+    class Meta:
+        model = Products
         fields = '__all__' 
 
 class LoginSerializer(serializers.Serializer):
