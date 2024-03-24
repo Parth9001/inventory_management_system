@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 export default class Card extends Component {
 	handleDelete = async () => {
 		try {
-			const response = await fetch(`http://127.0.0.1:8000/products/${this.props.prodID}`, {
-				method: 'GET',
+			const response = await fetch(`http://127.0.0.1:8000/delete/${this.props.prodID}`, {
+				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json'
 				}
