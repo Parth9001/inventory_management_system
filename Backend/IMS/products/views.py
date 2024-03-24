@@ -164,26 +164,35 @@ def get_product_info(request):
 
 @api_view(['POST'])
 def issue_product(request):
-    if request.method == 'POST':
-        product_id = request.data.get('product_id')
-        username = request.data.get('username')
-        quantity = int(request.data.get('quantity'))
-        product = Products.objects.get(product_id=product_id)
-        if quantity > product.quantity:
-            return render(request, 'error.html', {'error_message': 'Not enough quantity available.'})
-        else:
-            product.quantity -= quantity
-            product.save()
-            t = ProductLog(user=User.objects.get(username=username), product=product, quantity=quantity)
-            t.save()
-            return Response(PLogSerializer(ProductLog.objects.all(),many=True), status=status.HTTP_200_OK)
+    product_id = request.data.get('product_id')
+    username = request.data.get('username')
+    quantity = int(request.data.get('quantity'))
+    product = Products.objects.get(product_id=product_id)
+    if quantity > product.quantity:
+        return render(request, 'error.html', {'error_message': 'Not enough quantity available.'})
+    else:
+        product.quantity -= quantity
+        product.save()
+        t = ProductLog(user=User.objects.get(username=username), product=product, quantity=quantity)
+        t.save()
+        return Response(ProductLog.objects.all().values(), status=status.HTTP_200_OK)
         
 @api_view(['POST'])
 def get_log_of_product(request):
-    try:
-        product_id = request.data.get('product_id')
-        product = Products.objects.get(product_id=product_id)
-        # serializer = PLogSerializer(ProductLog,many=True)
-        return Response(ProductLog.objects.get(product=product))
-    except:
-        return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
+    # try:
+    product_id = request.data.get('product_id')
+    product = Products.objects.get(product_id=product_id)
+    # serializer = PLogSerializer(ProductLog,many=True)
+    objects = ProductLog.objects.filter(product=product).values()
+    data = []
+    for d in objects:
+        user = User.objects.get(id=d['user_id'])
+        a = {
+            'username':user.username,
+            'quantity':d['quantity'],
+            'datetime':d['issue_datetime']
+        }
+        data.append(a)
+    return Response(data)
+    # except:
+    #     return Response({'error': 'Products not found.'}, status=status.HTTP_404_NOT_FOUND)
