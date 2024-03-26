@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
 	handleDelete = async () => {
+		const { onProductDelete } = this.props;
 		try {
 			const response = await fetch(`http://127.0.0.1:8000/delete/${this.props.prodID}`, {
 				method: 'DELETE',
@@ -13,7 +14,7 @@ export default class Card extends Component {
 				}
 			});
 			if (response.ok) {
-				console.log("Product deleted successfully");
+				onProductDelete(this.props.prodID);
 			} else {
 				console.error('Failed to delete product');
 			}
