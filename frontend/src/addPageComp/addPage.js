@@ -9,45 +9,12 @@ import QuantityCounter from "./quantity/addQuan";
 
 function MyComponent() {
   const [quantity, setQuantity] = useState(0);
-  const [valuename, setValuename] = useState('');
-  const [valuedesc, setValuedesc] = useState('');
+  const [name, setname] = useState('');
+  const [description, setdescription] = useState('');
   const [location, setLocation] = useState('');
-  const [valueid, setValueid] = useState('');
+  const [id, setid] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
   const [accessLevel, setAccessLevel] = useState('user'); // Default value
-
-  // Function to handle form submission and API call
-  const handleSubmit = async () => {
-    try {
-      // Make a POST request to your API endpoint
-      const response = await axios.post('https://your-api-endpoint.com/data', {
-        quantity,
-        valuename,
-        valuedesc,
-        location,
-        valueid,
-        isFavorite,
-        accessLevel
-      });
-
-      // Handle successful response
-      console.log("API Response:", response.data);
-
-      // Clear the form or do any other necessary actions upon successful submission
-      // For example, you can reset the form fields
-      setQuantity(0);
-      setValuename('');
-      setValuedesc('');
-      setLocation('');
-      setValueid('');
-      setIsFavorite(false);
-      setAccessLevel('user'); // Reset access level to default value
-    } catch (error) {
-      // Handle errors
-      console.error("API Error:", error);
-      // You can also display an error message to the user
-    }
-  };
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -94,7 +61,7 @@ function MyComponent() {
         }}
       >
         <div style={{ position: "absolute", zIndex: 1 }}>
-          <LinkButton />
+          <LinkButton image ={image} quantity={quantity} name={name} description={description} code={code} id={id}/>
         </div>
       </div>
 
@@ -110,7 +77,7 @@ function MyComponent() {
         }}
       >
         <div style={{ position: "absolute", left: 0, top: 40, zIndex: 1 }}>
-          <TextInputBoxWithStylesDesc valuedesc={valuedesc} setValuedesc={setValuedesc} />
+          <TextInputBoxWithStylesDesc description={description} setdescription={setdescription} />
         </div>
         <div
           style={{
@@ -177,7 +144,7 @@ function MyComponent() {
         }}
       >
         <div style={{ position: "absolute", left: 0, top: 20, zIndex: 1 }}>
-          <TextInputBoxWithStylesName valuename={valuename} setValuename={setValuename} />
+          <TextInputBoxWithStylesName name={name} setname={setname} />
         </div>
         <div
           style={{
@@ -208,7 +175,7 @@ function MyComponent() {
         }}
       >
         <div style={{ position: "absolute", left: 0, top: 20, zIndex: 1 }}>
-          <TextInputBoxWithStylesProdId valueid={valueid} setValueid={setValueid} />
+          <TextInputBoxWithStylesProdId id={id} setid={setid} />
         </div>
         <div
           style={{
@@ -254,12 +221,6 @@ function MyComponent() {
           </select>
         </label>
       </div>
-
-      {/* Button to submit data to the API */}
-      <div style={{ position: "absolute"}}>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-
     </div>
   );
 }

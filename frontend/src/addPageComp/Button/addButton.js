@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LinkButton({image , quantity, valuename,valuedesc, valuecode, valueid}) {
+function LinkButton({image , quantity, name,description, code, id}) {
   const handlesubmit = async (event) => {
     event.preventDefault();
     try{
@@ -12,10 +12,10 @@ function LinkButton({image , quantity, valuename,valuedesc, valuecode, valueid})
         body: JSON.stringify({
           image : image,
           quantity:quantity,
-          valuename:valuename,
-          valuedesc:valuedesc,
-          valuecode:valuecode,
-          valueid:valueid
+          name:name,
+          description:description,
+          code:code,
+          id:id
         })
       });
       if(response.ok){

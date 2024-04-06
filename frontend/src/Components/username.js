@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 
-const TextInputBoxWithStylesProdCode = ({id, setid}) => {
+const Username = () => {
   const [focused, setFocused] = useState(false);
+  const [value, setValue] = useState('');
 
   // Define a variable for the placeholder text
-  var placeholderText = 'Enter Product ID';
+  var placeholderText = 'Enter username';
 
   const handleFocus = () => {
     setFocused(true);
   };
 
   const handleBlur = () => {
-    if (!id) {
+    if (!value) {
       setFocused(false);
     }
   };
 
   const handleChange = (event) => {
-    setid(event.target.id);
+    setValue(event.target.value);
   };
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <input
         type="text"
-        id={id}
+        value={value}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -49,4 +50,4 @@ const TextInputBoxWithStylesProdCode = ({id, setid}) => {
   );
 }
 
-export default TextInputBoxWithStylesProdCode;
+export default Username;

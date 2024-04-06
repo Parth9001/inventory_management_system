@@ -122,7 +122,7 @@ function EditPage() {
             zIndex: 1
 					}}
 				>
-					Product Code
+					Product ID
 				</div>
 			</div>
 
@@ -184,7 +184,7 @@ function EditPage() {
             zIndex: 1
 					}}
 				>
-					Product ID
+					Product Code
 				</div>
 			</div>
 

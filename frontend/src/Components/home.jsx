@@ -45,6 +45,12 @@ export class Home extends Component {
         this.setState({ showFavorites: !this.state.showFavorites});
     };
 
+	handleProductDelete = (deletedProductId) => {
+		this.setState(prevState => ({
+			products: prevState.products.filter(product => product.id !== deletedProductId)
+		}));
+	};
+
 	render() {
 
 		const { products, searchQuery, sortBy, min, max, showFavorites } = this.state;
@@ -130,6 +136,7 @@ export class Home extends Component {
 									name={element.name}
 									quantity={element.quantity}
 									prodID={element.id}
+									onProductDelete={this.handleProductDelete}
 								/>
 							</div>
 						);

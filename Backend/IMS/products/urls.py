@@ -11,5 +11,12 @@ urlpatterns = [
     path('api/login/', views.LoginAPIView.as_view(), name='login'),
     path('', views.get_info),
     path('issue_product/',views.issue_product),
-    path('user_products_issued/',views.get_user_products),
+    # path('user_products_issued/<str:product_id>',views.get_user_products),
+    path('product_info/',views.get_product_info),
+    # path('user_products_issued/',views.get_user_products),
+    # path('api/audit', views.get_issued_products),
+    path('product_info/',views.get_product_info),
+    path('issue',views.issue_product),
+    path('get_issue_data',views.get_log_of_product)
 ]
+
